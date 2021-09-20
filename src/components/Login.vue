@@ -3,7 +3,7 @@
         <div class="row content">
             <div class="col">
                 <h3 class="signin-text mb-3">Log-in</h3>
-                <form>
+                <form @submit.prevent="autenticacaoLogin">
                     <div class="form-group">
                         <label for="user">Usuário</label>
                         <input type="user" name="user" placeholder="Email, CPF ou PIS" class="form-control">

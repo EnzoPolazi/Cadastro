@@ -3,61 +3,61 @@
         <div class="row content">
             <div class="col">
                 <h3 class="signup-text mb-3">Cadastre-se</h3>
-                <form>
+                <form @submit.prevent="addCadastro(cadastro)">
                     <div class="form-group">
                         <label for="user">Nome</label>
-                        <input type="user" name="nome" class="form-control">
+                        <input type="user" v-model="cadastro.nome" name="nome" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control">
+                        <input type="email" v-model="cadastro.email" name="email" class="form-control">
                     </div>
                     <h5>Endereço:</h5>
                     <div class="row content-address">
                         <div class="col">
                             <div class="form-group">
                                 <label for="pais">País</label>
-                                <input type="text" name="pais" class="form-control">
+                                <input type="text" v-model="cadastro.pais" name="pais" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="municipio">Município</label>
-                                <input type="text" name="municipio" class="form-control">
+                                <input type="text" v-model="cadastro.municipio" name="municipio" class="form-control">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="estado">Estado</label>
-                                <input type="text" name="estado" class="form-control">
+                                <input type="text" v-model="cadastro.estado" name="estado" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="cep">CEP</label>
-                                <input type="text" name="cep" class="form-control">
+                                <input type="text" v-model="cadastro.cep" name="cep" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-9 form-group">
                             <label for="rua">Rua</label>
-                            <input type="text" name="rua" class="form-control">
+                            <input type="text" v-model="cadastro.rua" name="rua" class="form-control">
                         </div>
                         <div class="col-md-3 form-group">
                             <label for="numero">Número</label>
-                            <input type="text" name="numero" class="form-control">
+                            <input type="text" v-model="cadastro.numero" name="numero" class="form-control">
                         </div>
                         <div class="col form-group">
                             <label for="complemento">Complemento</label>
-                            <input type="text" name="complemento" class="form-control">
+                            <input type="text" v-model="cadastro.complemento" name="complemento" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="cpf">CPF</label>
-                        <input type="text" name="cpf" class="form-control">
+                        <input type="text" v-model="cadastro.cpf" name="cpf" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="pis">PIS</label>
-                        <input type="text" name="pis" class="form-control">
+                        <input type="text" v-model="cadastro.pis" name="pis" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha</label>
-                        <input type="password" name="senha" class="form-control">
+                        <input type="password" v-model="cadastro.senha" name="senha" class="form-control">
                     </div>
                     <button class="btn btn-class">Cadastrar-se</button>
                 </form>
@@ -68,7 +68,30 @@
 
 <script>
 export default {
-    name: "Form"
+    name: "Form",
+    data(){
+        return {
+            cadastro: {
+                nome: null,
+                email: null,
+                pais: null,
+                estado: null,
+                municipio: null,
+                cep: null,
+                rua: null,
+                numero: null,
+                complemento: null,
+                cpf: null,
+                pis: null,
+                senha: null
+            }
+        }
+    },
+    methods: {
+        addCadastro(cadastro) {
+            console.log(cadastro);
+        }
+    }
 }
 </script>
 
