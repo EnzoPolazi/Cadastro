@@ -91,7 +91,7 @@ export default {
     text-align: center;
 }
 .form-control{
-    display: block;
+    display: flex;
     width: 100%;
     font-size: 1rem;
     font-weight: bold;
@@ -114,7 +114,7 @@ export default {
 }
 .btn-class{
     font-weight: bold;
-    display: block;
+    display: flex;
     margin: 30px auto auto auto;
     border-color: #261132;
     color: #261132;

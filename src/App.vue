@@ -18,8 +18,8 @@ export default {
   data(){
     return{
       visitor: 'Visitante',
-      visible: false,
-      visible2: true
+      visible: true,
+      visible2: false
     }
   }
 }
@@ -33,6 +33,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #ffffff;
+  background-color: #261132;
+}
+html{
   background-color: #261132;
 }
 h1{
