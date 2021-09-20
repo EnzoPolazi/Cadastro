@@ -1,4 +1,5 @@
 <template>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <div class="container">
         <div class="row content">
             <div class="col">
@@ -61,14 +62,21 @@
                     </div>
                     <button class="btn btn-class">Cadastrar-se</button>
                 </form>
+                <p id="redLogin">Já possui uma conta? <router-link to="/">Fazer Login</router-link></p>
             </div>
         </div>
     </div>
+    <Footer />
 </template>
 
 <script>
+import Footer from '@/components/Footer.vue'
+
 export default {
     name: "Form",
+    components: {
+        Footer
+    },
     data(){
         return {
             cadastro: {
@@ -99,7 +107,7 @@ export default {
 .content{
     color: #000000;
     max-width: 500px;
-    margin: 0 auto;
+    margin: 60px auto 120px auto;
     padding: 2rem 1rem 2rem 1rem;
     box-shadow: 0px 0px 10px 10px rgba(0,0,0, .05);
     border-radius: 10px;
@@ -121,13 +129,14 @@ export default {
     line-height: 1.5;
     border-color: #261132;
     border-style: solid;
-    padding: 2px;
+    padding: 3px;
     color: #495057;
     height: auto;
     border-radius: 7px;
     background-color: #fff;
     background-clip: padding-box;
     text-indent: 12px;
+    margin: 0;
 }
 .form-control:focus{
     color: #132435;
@@ -145,5 +154,10 @@ export default {
 .btn-class:hover{
     background-color: #261132;
     color: #fff;
+}
+#redLogin{
+    text-align: center;
+    font-size: 90%;
+    margin: 14px auto auto auto;
 }
 </style>

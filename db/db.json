@@ -1,0 +1,18 @@
+{
+    "cadastros": [
+        {
+            "nome": "Ana",
+            "email": "Ana@email.com",
+            "pais": "Grecia",
+            "estado": "Greciazinha",
+            "municipio": "Greciazinhainha",
+            "cep": "00009",
+            "rua": "Rua aleatoria da Grecia",
+            "numero": "999",
+            "complemento": "",
+            "cpf": "777666555-09",
+            "pis": "216537163",
+            "senha": "grecia"
+        }
+    ]
+}

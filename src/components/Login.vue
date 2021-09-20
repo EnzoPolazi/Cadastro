@@ -14,6 +14,7 @@
                     </div>
                     <button class="btn btn-class">Logar</button>
                 </form>
+                <p id="redCad">Não possui uma conta? <router-link to="/form">Cadastre-se</router-link></p>
             </div>
         </div>
     </div>
@@ -42,12 +43,17 @@
 .btn-class{
     font-weight: bold;
     display: flex;
-    margin: 30px auto auto auto;
+    margin: 14px auto auto auto;
     border-color: #261132;
     color: #261132;
 }
 .btn-class:hover{
     background-color: #261132;
     color: #fff;
+}
+#redCad{
+    text-align: center;
+    font-size: 90%;
+    margin: 14px auto auto auto;
 }
 </style>

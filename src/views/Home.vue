@@ -1,25 +1,23 @@
 <template>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <h1>Olá {{ visitor }}</h1>
-  <Login v-if="visible2"/>
-  <Form v-if="visible"/>
+  <Login />
+  <Footer />
 </template>
 
 <script>
 import Login from '@/components/Login.vue'
-import Form from '@/components/Form.vue'
+import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
     Login,
-    Form
+    Footer
   },
   data(){
     return{
-      visitor: 'Visitante',
-      visible: false,
-      visible2: true
+      visitor: 'Visitante'
     }
   }
 }
@@ -30,8 +28,6 @@ export default {
 
 #app {
   font-family: 'Poppins', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   color: #ffffff;
   background-color: #261132;
 }
