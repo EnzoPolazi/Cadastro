@@ -1,6 +1,4 @@
 <template>
-    <p id="welcoming">Olá {{ visitor }}</p>
-    
     <div class="container">
         <div class="row content">
             <div class="col">
@@ -70,23 +68,19 @@
 
 <script>
 export default {
-    name: "Form",
-    props: {
-        visitor: String
-    }
+    name: "Form"
 }
 </script>
 
 <style scoped>
-#welcoming{
-    text-align: center;
-}
 .content{
+    color: #000000;
     max-width: 500px;
     margin: 0 auto;
     padding: 2rem 1rem 2rem 1rem;
-    box-shadow: 0px 0px 5px 5px rgba(0,0,0, .05);
+    box-shadow: 0px 0px 10px 10px rgba(0,0,0, .05);
     border-radius: 10px;
+    background-color: #fff;
 }
 .content-address{
     margin: 10px;
@@ -113,12 +107,13 @@ export default {
     text-indent: 12px;
 }
 .form-control:focus{
-    color: #495057;
+    color: #132435;
     background-color: #fff;
     outline: 0;
     box-shadow: none;
 }
 .btn-class{
+    font-weight: bold;
     display: block;
     margin: 30px auto auto auto;
     border-color: #261132;
