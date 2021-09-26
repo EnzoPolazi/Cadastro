@@ -4,7 +4,7 @@
         <div class="row content">
             <div class="col">
                 <h3 class="signup-text mb-3">Cadastre-se</h3>
-                <form @submit.prevent="addCadastro(cadastro)">
+                <form @submit.prevent="addCadastro()">
                     <div class="form-group">
                         <label for="user">Nome</label>
                         <input type="user" v-model="cadastro.nome" name="nome" class="form-control">
@@ -71,6 +71,7 @@
 
 <script>
 import Footer from '@/components/Footer.vue'
+import axios from 'axios'
 
 export default {
     name: "Form",
@@ -80,24 +81,28 @@ export default {
     data(){
         return {
             cadastro: {
-                nome: null,
-                email: null,
-                pais: null,
-                estado: null,
-                municipio: null,
-                cep: null,
-                rua: null,
-                numero: null,
-                complemento: null,
-                cpf: null,
-                pis: null,
-                senha: null
+                nome: '',
+                email: '',
+                pais: '',
+                estado: '',
+                municipio: '',
+                cep: '',
+                rua: '',
+                numero: '',
+                complemento: '',
+                cpf: '',
+                pis: '',
+                senha: ''
             }
         }
     },
     methods: {
-        addCadastro(cadastro) {
-            console.log(cadastro);
+        async addCadastro() {
+            const response = await axios.post('form', {
+                cadastro: this.cadastro
+            });
+
+            console.log(response);
         }
     }
 }
