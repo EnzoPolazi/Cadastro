@@ -111,6 +111,12 @@ export default {
                 senha: this.senha
             });
 
+            console.log('usuário registrado' + this.email);
+            await axios.post('/login', {
+                login: this.email,
+                senha: this.senha
+            }, {withCredentials: true});
+
             this.$router.push('/login');
         }
     }

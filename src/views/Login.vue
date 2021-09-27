@@ -1,10 +1,9 @@
 <template>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <Visitante />
     <div class="container">
         <div class="row content">
             <div class="col">
-                <h3 class="signin-text mb-3">Log-in</h3>
+                <h3 class="signin-text mb-3">Login</h3>
                 <form @submit.prevent="autenticacaoLogin">
                     <div class="form-group">
                         <label for="login">Usuário</label>
@@ -25,14 +24,12 @@
 
 <script>
 import Footer from '@/components/Footer.vue'
-import Visitante from '@/components/Visitante.vue'
 import axios from 'axios'
 
     export default {
         name: "Login",
         components: {
-            Footer,
-            Visitante
+            Footer
         },
         data(){
             return {
@@ -42,11 +39,12 @@ import axios from 'axios'
         },
         methods: {
             async autenticacaoLogin(){
-                const response = await axios.post('/login', {
+                await axios.post('/login', {
                     login: this.login,
                     senha: this.senha
-                });
-                localStorage.setItem('token', response.data.token);
+                }, {withCredentials: true});
+
+                this.$router.push('/');
             }
         }
     }

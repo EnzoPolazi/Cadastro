@@ -1,28 +1,30 @@
 <template>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <Visitante />
+  <h1>Olá {{ user.name }}</h1>
+  <router-link to="/login">Fazer Login</router-link>
+  <router-link to="/cadastro">Cadastre-se</router-link>
   <Footer />
 </template>
 
 <script>
 import Footer from '@/components/Footer.vue'
-import Visitante from '@/components/Visitante.vue'
 import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
-    Footer,
-    Visitante
+    Footer
   },
   data(){
     return{
-      visitor: 'Visitante'
+      user: {
+        name: 'Visitante'
+      }
     }
   },
   async created() {
     const response = await axios.get('user');
-    console.log(response);
+    this.user = response.data;
   }
 }
 </script>

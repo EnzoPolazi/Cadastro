@@ -79,9 +79,14 @@ router.post('/login', async (req, res) => {
         return res.status(400).send("Senha inválida");
     }
 
-    //Cria de disponibiliza o token JWT
+    //Cria e disponibiliza o token JWT via cookie
     const token = jwt.sign({_id: registro._id}, process.env.TOKEN_GEN);
-    res.header('token-jwt', token).send("Logado com sucesso. Seu token é: " + token);
+    res.cookie('Jwt', token, {
+        httpOnly: true,
+        maxAge: 24*60*60*1000 // horas*minutos*segundos*milisegundos = 1 dia
+    });
+
+    res.send("Logado com sucesso, cookie inicializado");
 });
 
 router.post('/edit', verificaJwt, async (req, res) => {
