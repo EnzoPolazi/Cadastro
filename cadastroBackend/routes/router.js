@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const User = require('../model/User.js');
 const { validacaoRegistro, validacaoLogin } = require('../validation.js');
 
@@ -78,7 +79,9 @@ router.post('/login', async (req, res) => {
         return res.status(400).send("Senha inválida");
     }
 
-    res.send("Logado com sucesso");
+    //Cria de disponibiliza o token JWT
+    const token = jwt.sign({_id: registro._id}, process.env.TOKEN_GEN);
+    res.header('token-jwt', token).send("Logado com sucesso. Seu token é: " + token);
 });
 
 module.exports = router;
