@@ -1,12 +1,13 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const verificaJwt = require('./verificaJwt');
 const User = require('../model/User.js');
 const { validacaoRegistro, validacaoLogin } = require('../validation.js');
 
 router.post('/register', async (req, res) => {
 
-    //Validação antes da criação do usuário
+    //Validação dos dados antes da criação do usuário
     const validacao = validacaoRegistro(req.body);
     if (validacao.error) {
         return res.status(400).send(validacao.error.details[0].message);
@@ -55,7 +56,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 
-    //Validação antes da tentativa de login
+    //Validação dos dados antes da tentativa de login
     const validacao = validacaoLogin(req.body);
     if (validacao.error) {
         return res.status(400).send(validacao.error.details[0].message);
@@ -82,6 +83,33 @@ router.post('/login', async (req, res) => {
     //Cria de disponibiliza o token JWT
     const token = jwt.sign({_id: registro._id}, process.env.TOKEN_GEN);
     res.header('token-jwt', token).send("Logado com sucesso. Seu token é: " + token);
+});
+
+router.post('/edit', verificaJwt, async (req, res) => {
+
+    //Validação dos dados antes da tentativa de edição
+    const validacao = validacaoRegistro(req.body);
+    if (validacao.error) {
+        return res.status(400).send(validacao.error.details[0].message);
+    }
+
+    //Realiza update no banco de dados usando o _id relativo ao token atual
+    const attRegistro = await User.findOneAndUpdate({_id: req.user._id}, req.body);
+    if(!attRegistro) {
+        return res.status(400).send("Atualização do registro falhou")
+    }
+
+    res.send("Registro atualizado com sucesso")
+});
+
+router.delete('/remove', verificaJwt, async (req, res) => {
+    //Realiza delete no banco de dados usando o _id relativo ao token atual
+    const removeRegistro = await User.findOneAndRemove({_id: req.user._id});
+    if(!removeRegistro) {
+        return res.status(400).send("Remoção do registro falhou")
+    }
+
+    res.send("Registro removido com sucesso")
 });
 
 module.exports = router;
