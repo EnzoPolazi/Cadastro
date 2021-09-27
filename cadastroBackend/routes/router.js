@@ -1,27 +1,27 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const User = require('../model/User.js');
-const { validacaoRegistro } = require('../validation.js');
+const { validacaoRegistro, validacaoLogin } = require('../validation.js');
 
 router.post('/register', async (req, res) => {
 
     //Validação antes da criação do usuário
     const validacao = validacaoRegistro(req.body);
-    if(validacao.error) {
+    if (validacao.error) {
         return res.status(400).send(validacao.error.details[0].message);
     }
 
     //Verifica se alguma chave de login já existe
-    var checkChavesExistentes = await User.findOne({email: req.body.email});
-    if(checkChavesExistentes) {
+    var checkChavesExistentes = await User.findOne({ email: req.body.email });
+    if (checkChavesExistentes) {
         return res.status(400).send("Email já utilizado");
     }
-    checkChavesExistentes = await User.findOne({cpf: req.body.cpf});
-    if(checkChavesExistentes) {
+    checkChavesExistentes = await User.findOne({ cpf: req.body.cpf });
+    if (checkChavesExistentes) {
         return res.status(400).send("Cpf já utilizado");
     }
-    checkChavesExistentes = await User.findOne({pis: req.body.pis});
-    if(checkChavesExistentes) {
+    checkChavesExistentes = await User.findOne({ pis: req.body.pis });
+    if (checkChavesExistentes) {
         return res.status(400).send("Pis já utilizado");
     }
 
@@ -44,12 +44,41 @@ router.post('/register', async (req, res) => {
         pis: req.body.pis,
         senha: senhaHashed
     });
-    try{
+    try {
         const usuarioSalvo = await user.save();
         res.send(usuarioSalvo);
-    }catch(err){
+    } catch (err) {
         res.status(400).send(err);
     }
+});
+
+router.post('/login', async (req, res) => {
+
+    //Validação antes da tentativa de login
+    const validacao = validacaoLogin(req.body);
+    if (validacao.error) {
+        return res.status(400).send(validacao.error.details[0].message);
+    }
+
+    //Verifica se o login é válido
+    var registro = await User.findOne({ email: req.body.login });
+    if (!registro) {
+        registro = await User.findOne({ cpf: req.body.login });
+        if (!registro) {
+            registro = await User.findOne({ pis: req.body.login });
+            if (!registro) {
+                return res.status(400).send("Login não encontrado");
+            }
+        }
+    }
+
+    //Verifica se a senha é válida
+    var senhaValida = await bcrypt.compare(req.body.senha, registro.senha);
+    if (!senhaValida) {
+        return res.status(400).send("Senha inválida");
+    }
+
+    res.send("Logado com sucesso");
 });
 
 module.exports = router;

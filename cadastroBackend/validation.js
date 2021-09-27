@@ -56,17 +56,8 @@ const validacaoRegistro = (dados) => {
 
 const validacaoLogin = (dados) => {
     const modelo = Joi.object({
-        email: Joi.string()
-            .required()
+        login: Joi.string()
             .max(255)
-            .email(),
-        cpf: Joi.string()
-            .min(11)
-            .max(14)
-            .required(),
-        pis: Joi.string()
-            .min(11)
-            .max(14)
             .required(),
         senha: Joi.string()
             .min(3)
