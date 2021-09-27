@@ -71,6 +71,7 @@
 
 <script>
 import Footer from '@/components/Footer.vue'
+import axios from 'axios'
 
 export default {
     name: "Cadastro",
@@ -95,7 +96,7 @@ export default {
     },
     methods: {
         async addCadastro() {
-            const dados = {
+            const response = await axios.post('/register', {
                 nome: this.nome,
                 email: this.email,
                 pais: this.pais,
@@ -108,12 +109,6 @@ export default {
                 cpf: this.cpf,
                 pis: this.pis,
                 senha: this.senha
-            }
-            await fetch('http://localhost:3000/register', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                mode: 'no-cors',
-                body: JSON.stringify(dados)
             });
         }
     }
