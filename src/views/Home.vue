@@ -2,16 +2,8 @@
   <div class="container">
       <div class="row content">
           <div class="col">
-            <h3 class="user-display mb-3">Olá {{ user.nome }}</h3>
-            <div class="row">
-                <button class="btn btn-class" @click="$router.push('/edit')">Editar dados</button>
-            </div>
-            <div class="row">
-                <button class="btn btn-class" @click="$router.push('/cadastro')">Cadastrar novo usuário</button>
-            </div>
-            <div class="row">
-              <button class="btn btn-class" @click="$router.push('/logout')">logout</button>
-            </div>
+              <h3 class="user-display mb-3">Olá {{ user.nome }} {{ this.$store.getters.authenticatedGet }} </h3>
+              <Buttons />
           </div>
       </div>
   </div>
@@ -20,23 +12,31 @@
 
 <script>
 import Footer from "@/components/Footer.vue";
+import Buttons from "@/components/Buttons.vue";
 import axios from "axios";
 
 export default {
   name: "App",
   components: {
     Footer,
+    Buttons
   },
   data() {
     return {
       user: {
         nome: "Visitante",
-      },
+      }
     };
   },
   async created() {
-    const response = await axios.get("user", { withCredentials: true });
-    this.user = response.data;
+    try {
+      const response = await axios.get("user", { withCredentials: true });
+      this.user = response.data;
+
+      await this.$store.dispatch('setAuth', true)
+    } catch (err) {
+      await this.$store.dispatch('setAuth', false)
+    }
   },
 };
 </script>
@@ -54,16 +54,5 @@ export default {
 .user-display{
     font-weight: bold;
     text-align: center;
-}
-.btn-class{
-    font-weight: bold;
-    display: flex;
-    margin: 15px auto auto auto;
-    border-color: #261132;
-    color: #261132;
-}
-.btn-class:hover{
-    background-color: #261132;
-    color: #fff;
 }
 </style>
