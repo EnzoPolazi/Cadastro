@@ -4,15 +4,15 @@
             "nome": "Ana",
             "email": "Ana@email.com",
             "pais": "Grecia",
-            "estado": "Greciazinha",
+            "estado": "GC",
             "municipio": "Greciazinhainha",
-            "cep": "00009",
+            "cep": "00000009",
             "rua": "Rua aleatoria da Grecia",
             "numero": "999",
             "complemento": "",
             "cpf": "777666555-09",
-            "pis": "216537163",
-            "senha": "grecia"
+            "pis": "11111111111",
+            "senha": "Ana"
         }
     ]
 }
