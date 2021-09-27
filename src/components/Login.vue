@@ -14,7 +14,7 @@
                     </div>
                     <button class="btn btn-class">Logar</button>
                 </form>
-                <p id="redCad">Não possui uma conta? <router-link to="/form">Cadastre-se</router-link></p>
+                <p id="redCad">Não possui uma conta? <router-link to="/cadastro">Cadastre-se</router-link></p>
             </div>
         </div>
     </div>

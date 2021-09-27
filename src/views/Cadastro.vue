@@ -71,10 +71,9 @@
 
 <script>
 import Footer from '@/components/Footer.vue'
-import axios from 'axios'
 
 export default {
-    name: "Form",
+    name: "Cadastro",
     components: {
         Footer
     },
@@ -98,11 +97,8 @@ export default {
     },
     methods: {
         async addCadastro() {
-            const response = await axios.post('form', {
-                cadastro: this.cadastro
-            });
 
-            console.log(response);
+            console.log("response");
         }
     }
 }

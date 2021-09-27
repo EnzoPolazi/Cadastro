@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home'
 import Sobre from '@/views/Sobre'
-import Form from '@/views/Form'
+import Cadastro from '@/views/Cadastro'
 
 const routes = [
     {
@@ -15,9 +15,9 @@ const routes = [
         component: Sobre
     },
     {
-        name: 'form',
-        path: '/form',
-        component: Form
+        name: 'cadastro',
+        path: '/cadastro',
+        component: Cadastro
     }
 ]
 
