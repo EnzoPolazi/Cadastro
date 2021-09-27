@@ -1,7 +1,7 @@
 <template>
-    <div v-if="auth">
+    <div v-if="this.$store.getters.authenticatedGet">
         <div class="row">
-        <button class="btn btn-class" @click="$router.push('../views/edit')">Editar dados</button>
+        <button class="btn btn-class" @click="$router.push('/edit')">Editar dados</button>
         </div>
         <div class="row">
             <button class="btn btn-class" @click="$router.push('/logout')">logout</button>
@@ -10,7 +10,7 @@
             <button class="btn btn-class" @click="$router.push('/cadastro')">Cadastrar novo usuário</button>
         </div>
     </div>
-    <div v-if="!auth">
+    <div v-if="!this.$store.getters.authenticatedGet">
         <div class="row">
             <button class="btn btn-class" @click="$router.push('/login')">login</button>
         </div>
@@ -22,12 +22,7 @@
 
 <script>
     export default {
-        name: 'Buttons',
-        data(){
-            return {
-                auth: this.$store.store.authentication
-            }
-        }
+        name: 'Buttons'
     }
 </script>
 

@@ -2,7 +2,7 @@
   <div class="container">
       <div class="row content">
           <div class="col">
-              <h3 class="user-display mb-3">Olá {{ user.nome }} {{ this.$store.getters.authenticatedGet }} </h3>
+              <h3 class="user-display mb-3">Olá {{ user.nome }}</h3>
               <Buttons />
           </div>
       </div>
