@@ -7,58 +7,58 @@
                 <form @submit.prevent="addCadastro()">
                     <div class="form-group">
                         <label for="user">Nome</label>
-                        <input type="user" v-model="cadastro.nome" name="nome" class="form-control">
+                        <input type="user" v-model="nome" name="nome" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" v-model="cadastro.email" name="email" class="form-control">
+                        <input type="email" v-model="email" name="email" class="form-control">
                     </div>
                     <h5>Endereço:</h5>
                     <div class="row content-address">
                         <div class="col">
                             <div class="form-group">
                                 <label for="pais">País</label>
-                                <input type="text" v-model="cadastro.pais" name="pais" class="form-control">
+                                <input type="text" v-model="pais" name="pais" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="municipio">Município</label>
-                                <input type="text" v-model="cadastro.municipio" name="municipio" class="form-control">
+                                <input type="text" v-model="municipio" name="municipio" class="form-control">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="estado">Estado</label>
-                                <input type="text" v-model="cadastro.estado" name="estado" class="form-control">
+                                <input type="text" v-model="estado" name="estado" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="cep">CEP</label>
-                                <input type="text" v-model="cadastro.cep" name="cep" class="form-control">
+                                <input type="text" v-model="cep" name="cep" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-9 form-group">
                             <label for="rua">Rua</label>
-                            <input type="text" v-model="cadastro.rua" name="rua" class="form-control">
+                            <input type="text" v-model="rua" name="rua" class="form-control">
                         </div>
                         <div class="col-md-3 form-group">
                             <label for="numero">Número</label>
-                            <input type="text" v-model="cadastro.numero" name="numero" class="form-control">
+                            <input type="text" v-model="numero" name="numero" class="form-control">
                         </div>
                         <div class="col form-group">
                             <label for="complemento">Complemento</label>
-                            <input type="text" v-model="cadastro.complemento" name="complemento" class="form-control">
+                            <input type="text" v-model="complemento" name="complemento" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="cpf">CPF</label>
-                        <input type="text" v-model="cadastro.cpf" name="cpf" class="form-control">
+                        <input type="text" v-model="cpf" name="cpf" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="pis">PIS</label>
-                        <input type="text" v-model="cadastro.pis" name="pis" class="form-control">
+                        <input type="text" v-model="pis" name="pis" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha</label>
-                        <input type="password" v-model="cadastro.senha" name="senha" class="form-control">
+                        <input type="password" v-model="senha" name="senha" class="form-control">
                     </div>
                     <button class="btn btn-class">Cadastrar-se</button>
                 </form>
@@ -79,26 +79,42 @@ export default {
     },
     data(){
         return {
-            cadastro: {
-                nome: '',
-                email: '',
-                pais: '',
-                estado: '',
-                municipio: '',
-                cep: '',
-                rua: '',
-                numero: '',
-                complemento: '',
-                cpf: '',
-                pis: '',
-                senha: ''
-            }
+            nome: '',
+            email: '',
+            pais: '',
+            estado: '',
+            municipio: '',
+            cep: '',
+            rua: '',
+            numero: '',
+            complemento: '',
+            cpf: '',
+            pis: '',
+            senha: ''
         }
     },
     methods: {
         async addCadastro() {
-
-            console.log("response");
+            const dados = {
+                nome: this.nome,
+                email: this.email,
+                pais: this.pais,
+                estado: this.estado,
+                municipio: this.municipio,
+                cep: this.cep,
+                rua: this.rua,
+                numero: this.numero,
+                complemento: this.complemento,
+                cpf: this.cpf,
+                pis: this.pis,
+                senha: this.senha
+            }
+            await fetch('http://localhost:3000/register', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                mode: 'no-cors',
+                body: JSON.stringify(dados)
+            });
         }
     }
 }

@@ -6,7 +6,6 @@ const User = require('../model/User.js');
 const { validacaoRegistro, validacaoLogin } = require('../validation.js');
 
 router.post('/register', async (req, res) => {
-
     //Validação dos dados antes da criação do usuário
     const validacao = validacaoRegistro(req.body);
     if (validacao.error) {
