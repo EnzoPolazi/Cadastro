@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 dotenv.config();
 
@@ -9,6 +10,8 @@ const app = express();
 
 //Usar formato json nas requisições
 app.use(express.json());
+
+app.use(cookieParser());
 
 //Configuração do Cors
 app.use((req, res, next) => {

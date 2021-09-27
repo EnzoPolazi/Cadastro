@@ -116,4 +116,28 @@ router.delete('/remove', verificaJwt, async (req, res) => {
     res.send("Registro removido com sucesso")
 });
 
+router.get('/user', async (req, res) => {
+    try {
+        const cookieJwt = req.cookies['Jwt'];
+
+        const decodedUser = jwt.verify(cookieJwt, process.env.TOKEN_GEN);
+        if(!decodedUser){
+            return res.status(401).send("Usuário não autenticado(cookie inválido)");
+        };
+        const userInfo = await User.findOne({_id: decodedUser._id});
+
+        //Se usuário é válido, retorna dados do mesmo baseado em seu id
+        res.send(userInfo);
+    } catch (err) {
+        return res.status(401).send("Usuário não autenticado(cookie inexistente)");
+    }
+});
+
+router.post('/logout', (req, res) => {
+    //Sobrescreve cookie existente para um que irá morrer
+    res.cookie('Jwt', '', {maxAge: 0});
+
+    res.send("Deslogado com sucesso");
+})
+
 module.exports = router;
