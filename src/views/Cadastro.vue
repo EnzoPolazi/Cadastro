@@ -62,7 +62,7 @@
                     </div>
                     <button class="btn btn-class">Cadastrar-se</button>
                 </form>
-                <p id="redLogin">Já possui uma conta? <router-link to="/">Fazer Login</router-link></p>
+                <p id="redLogin">Já possui uma conta? <router-link to="/login">Fazer Login</router-link></p>
             </div>
         </div>
     </div>

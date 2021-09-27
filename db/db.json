@@ -13,6 +13,20 @@
             "cpf": "777666555-09",
             "pis": "11111111111",
             "senha": "Ana"
+        },
+        {
+            "nome": "Enzo",
+            "email": "enzopolazi@gmail.com",
+            "pais": "Brasil",
+            "estado": "MG",
+            "municipio": "BH",
+            "cep": "30882650",
+            "rua": "Rua de bh mesmo",
+            "numero": "22",
+            "complemento": "",
+            "cpf": "70235581607",
+            "pis": "70235581608",
+            "senha": "Enzo"
         }
     ]
 }

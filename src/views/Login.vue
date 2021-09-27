@@ -1,4 +1,6 @@
 <template>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <Visitante />
     <div class="container">
         <div class="row content">
             <div class="col">
@@ -18,13 +20,20 @@
             </div>
         </div>
     </div>
+    <Footer />
 </template>
 
 <script>
+import Footer from '@/components/Footer.vue'
+import Visitante from '@/components/Visitante.vue'
 import axios from 'axios'
 
     export default {
         name: "Login",
+        components: {
+            Footer,
+            Visitante
+        },
         data(){
             return {
                 login: '',
