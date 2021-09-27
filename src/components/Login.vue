@@ -5,12 +5,12 @@
                 <h3 class="signin-text mb-3">Log-in</h3>
                 <form @submit.prevent="autenticacaoLogin">
                     <div class="form-group">
-                        <label for="user">Usuário</label>
-                        <input type="user" name="user" placeholder="Email, CPF ou PIS" class="form-control">
+                        <label for="login">Usuário</label>
+                        <input type="login" name="login" v-model="login" placeholder="Email, CPF ou PIS" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha</label>
-                        <input type="password" name="senha" placeholder="Senha" class="form-control">
+                        <input type="password" name="senha" v-model="senha" placeholder="Senha" class="form-control">
                     </div>
                     <button class="btn btn-class">Logar</button>
                 </form>
@@ -21,8 +21,25 @@
 </template>
 
 <script>
+import axios from 'axios'
+
     export default {
-        name: "Login"
+        name: "Login",
+        data(){
+            return {
+                login: '',
+                senha: ''
+            }
+        },
+        methods: {
+            async autenticacaoLogin(){
+                const response = await axios.post('/login', {
+                    login: this.login,
+                    senha: this.senha
+                });
+                localStorage.setItem('token', response.data.token);
+            }
+        }
     }
 </script>
 

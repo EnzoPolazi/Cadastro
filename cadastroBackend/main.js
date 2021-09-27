@@ -1,23 +1,31 @@
 const express = require('express');
-const app = express();
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 dotenv.config();
+
+const app = express();
+
+//Usar formato json nas requisições
+app.use(express.json());
+
+//Configuração do Cors
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    app.use(cors());
+    next();
+})
+
+//Importando rotas
+const authRouter = require('./routes/router.js');
+app.use(authRouter);
 
 //Conectar ao banco de dados
 mongoose.connect(process.env.DB_CONNECT,
     () => console.log('Conectado ao banco')
 );
 
-//Importando rotas
-const authRouter = require('./routes/router.js');
-
-//Permitir leitura de arquivos.json (que vem das requisições do frontEnd)
-app.use(express.json());
-
-//Rotas-ponte
-app.use(authRouter);
-
 const port = 3000;
-app.listen(port, () => console.log('Servidor iniciado e rodando'));
+app.listen(port, () => console.log('Servidor inicializado e rodando'));

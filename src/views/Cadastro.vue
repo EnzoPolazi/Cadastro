@@ -96,7 +96,7 @@ export default {
     },
     methods: {
         async addCadastro() {
-            const response = await axios.post('/register', {
+            await axios.post('/register', {
                 nome: this.nome,
                 email: this.email,
                 pais: this.pais,
@@ -110,6 +110,8 @@ export default {
                 pis: this.pis,
                 senha: this.senha
             });
+
+            this.$router.push('/login');
         }
     }
 }
