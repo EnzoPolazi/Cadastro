@@ -1,7 +1,6 @@
 <template>
     <footer id="footer">
         <router-link id="home" to="/">Home</router-link>
-        <router-link id="sobre" to="/sobre">Sobre o autor</router-link>
     </footer>
 </template>
 
@@ -25,9 +24,6 @@
 }
 #home{
     margin: auto auto auto 2%;
-}
-#sobre{
-    margin: auto 2% auto auto;
 }
 #footer a{
     text-decoration: none;
