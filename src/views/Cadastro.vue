@@ -117,7 +117,7 @@ export default {
                 senha: this.senha
             }, {withCredentials: true});
 
-            this.$router.push('/login');
+            this.$router.push('/');
         }
     }
 }

@@ -1,6 +1,7 @@
 <template>
     <footer id="footer">
-        <router-link to="/sobre">Sobre o autor</router-link>
+        <router-link id="home" to="/">Home</router-link>
+        <router-link id="sobre" to="/sobre">Sobre o autor</router-link>
     </footer>
 </template>
 
@@ -22,11 +23,16 @@
     bottom: 0;
     position: fixed;
 }
+#home{
+    margin: auto auto auto 2%;
+}
+#sobre{
+    margin: auto 2% auto auto;
+}
 #footer a{
     text-decoration: none;
     color: #ffffff;
     transition: 0.3s;
-    margin: auto 2% auto auto;
 }
 #footer a:hover{
     text-decoration: none;

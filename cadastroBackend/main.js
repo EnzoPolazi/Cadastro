@@ -10,7 +10,7 @@ const app = express();
 
 //Usar formato json nas requisições
 app.use(express.json());
-
+//Utilizar cookies
 app.use(cookieParser());
 
 //Configuração do Cors

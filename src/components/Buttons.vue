@@ -4,7 +4,7 @@
         <button class="btn btn-class" @click="$router.push('/edit')">Editar dados</button>
         </div>
         <div class="row">
-            <button class="btn btn-class" @click="$router.push('/logout')">logout</button>
+            <button class="btn btn-class" @click="$router.push('/logout')">Logout</button>
         </div>
         <div class="row">
             <button class="btn btn-class" @click="$router.push('/cadastro')">Cadastrar novo usuário</button>
@@ -12,7 +12,7 @@
     </div>
     <div v-if="!this.$store.getters.authenticatedGet">
         <div class="row">
-            <button class="btn btn-class" @click="$router.push('/login')">login</button>
+            <button class="btn btn-class" @click="$router.push('/login')">Login</button>
         </div>
         <div class="row">
             <button class="btn btn-class" @click="$router.push('/cadastro')">Cadastrar novo usuário</button>

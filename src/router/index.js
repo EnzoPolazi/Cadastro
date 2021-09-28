@@ -3,6 +3,7 @@ import Home from '@/views/Home'
 import Sobre from '@/views/Sobre'
 import Cadastro from '@/views/Cadastro'
 import Login from '@/views/Login'
+import Edit from '@/views/Edit'
 
 const routes = [
     {
@@ -24,6 +25,11 @@ const routes = [
         name: 'login',
         path: '/login',
         component: Login
+    },
+    {
+        name: 'edit',
+        path: '/edit',
+        component: Edit
     }
 ]
 

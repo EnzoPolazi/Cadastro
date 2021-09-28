@@ -54,7 +54,7 @@ import axios from 'axios'
 .content{
     color: #000000;
     max-width: 380px;
-    margin: 0 auto;
+    margin: 60px auto 120px auto;
     padding: 2rem 1rem 2rem 1rem;
     box-shadow: 0px 0px 60px 60px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
