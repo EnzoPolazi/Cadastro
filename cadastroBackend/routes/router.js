@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { verificaPossuiJwt, verificaNaoPossuiJwt } = require('./verificaJwt');
 const User = require('../model/User.js');
-const { validacaoRegistro, validacaoLogin, validacaoEdit } = require('../validation.js');
+const { validacaoRegistro, validacaoLogin, validacaoEdit } = require('./validation.js');
 
 router.post('/register', verificaPossuiJwt, async (req, res) => {
     //Validação dos dados antes da criação do usuário
