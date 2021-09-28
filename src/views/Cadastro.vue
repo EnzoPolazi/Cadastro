@@ -6,59 +6,59 @@
                 <h3 class="signup-text mb-3">Cadastre-se</h3>
                 <form @submit.prevent="addCadastro()">
                     <div class="form-group">
-                        <label for="user">Nome</label>
-                        <input type="user" v-model="nome" name="nome" class="form-control">
+                        <label for="user">Nome:</label>
+                        <input type="user" v-model="nome" placeholder="Nome" name="nome" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" v-model="email" name="email" class="form-control">
+                        <label for="email">Email:</label>
+                        <input type="email" v-model="email" placeholder="exemplo@email.com" name="email" class="form-control">
                     </div>
                     <h5>Endereço:</h5>
                     <div class="row content-address">
                         <div class="col">
                             <div class="form-group">
-                                <label for="pais">País</label>
-                                <input type="text" v-model="pais" name="pais" class="form-control">
+                                <label for="pais">País:</label>
+                                <input type="text" v-model="pais" placeholder="País" name="pais" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="municipio">Município</label>
-                                <input type="text" v-model="municipio" name="municipio" class="form-control">
+                                <label for="municipio">Município:</label>
+                                <input type="text" v-model="municipio" placeholder="Município" name="municipio" class="form-control">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="estado">Estado</label>
-                                <input type="text" v-model="estado" name="estado" class="form-control">
+                                <label for="estado">Estado:</label>
+                                <input type="text" v-model="estado" placeholder="Exemplo: MG" name="estado" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="cep">CEP</label>
-                                <input type="text" v-model="cep" name="cep" class="form-control">
+                                <label for="cep">CEP:</label>
+                                <input type="text" v-model="cep" placeholder="00000-000" name="cep" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-9 form-group">
-                            <label for="rua">Rua</label>
-                            <input type="text" v-model="rua" name="rua" class="form-control">
+                            <label for="rua">Rua:</label>
+                            <input type="text" v-model="rua" placeholder="Rua dos bobos" name="rua" class="form-control">
                         </div>
                         <div class="col-md-3 form-group">
-                            <label for="numero">Número</label>
-                            <input type="text" v-model="numero" name="numero" class="form-control">
+                            <label for="numero">Número:</label>
+                            <input type="text" v-model="numero" placeholder="0" name="numero" class="form-control">
                         </div>
                         <div class="col form-group">
-                            <label for="complemento">Complemento</label>
-                            <input type="text" v-model="complemento" name="complemento" class="form-control">
+                            <label for="complemento">Complemento:</label>
+                            <input type="text" v-model="complemento" placeholder="Exemplo: bl A apto 000" name="complemento" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="cpf">CPF</label>
-                        <input type="text" v-model="cpf" name="cpf" class="form-control">
+                        <label for="cpf">CPF:</label>
+                        <input type="text" v-model="cpf" placeholder="000.000.000-00" name="cpf" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="pis">PIS</label>
-                        <input type="text" v-model="pis" name="pis" class="form-control">
+                        <label for="pis">PIS:</label>
+                        <input type="text" v-model="pis" placeholder="000.0000.00-00" name="pis" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="senha">Senha</label>
-                        <input type="password" v-model="senha" name="senha" class="form-control">
+                        <label for="senha">Senha:</label>
+                        <input type="password" v-model="senha" placeholder="Senha" name="senha" class="form-control">
                     </div>
                     <button class="btn btn-class">Cadastrar-se</button>
                 </form>
