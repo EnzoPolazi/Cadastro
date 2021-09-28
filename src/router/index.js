@@ -3,8 +3,9 @@ import Home from '@/views/Home'
 import Sobre from '@/views/Sobre'
 import Cadastro from '@/views/Cadastro'
 import Login from '@/views/Login'
-import Logout from '@/views/Logout'
 import Edit from '@/views/Edit'
+import Logout from '@/views/Logout'
+import AlterarSenha from '@/views/AlterarSenha'
 
 const routes = [
     {
@@ -36,6 +37,11 @@ const routes = [
         name: 'logout',
         path: '/logout',
         component: Logout
+    },
+    {
+        name: 'alterar-senha',
+        path: '/alterar-senha',
+        component: AlterarSenha
     }
 ]
 

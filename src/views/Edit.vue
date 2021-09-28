@@ -56,9 +56,10 @@
                         <label for="pis">PIS</label>
                         <input type="text" v-model="user.pis" name="pis" class="form-control">
                     </div>
-                    <button class="btn btn-class">Editar</button>
+                    <button class="btn btn-class">Salvar</button>
                 </form>
-                <p id="rmvUser"><router-link to="/remove">Remover usuário</router-link></p>
+                <button class="btn btn-class" @click="removerCadastro()">Remover Cadastro</button>
+                <button class="btn btn-class" @click="$router.push('/alterar-senha')">Alterar senha</button>
             </div>
         </div>
     </div>
@@ -96,32 +97,43 @@ import axios from 'axios';
                 const response = await axios.get("user", { withCredentials: true });
                 this.user = response.data;
 
-                await this.$store.dispatch('setAuth', true)
+                await this.$store.dispatch('setAuth', true);
             } catch (err) {
-                await this.$store.dispatch('setAuth', false)
+                await this.$store.dispatch('setAuth', false);
             }
         },
         methods: {
-        async editCadastro() {
-            await axios.post('/edit', {
-                nome: this.user.nome,
-                email: this.user.email,
-                pais: this.user.pais,
-                estado: this.user.estado,
-                municipio: this.user.municipio,
-                cep: this.user.cep,
-                rua: this.user.rua,
-                numero: this.user.numero,
-                complemento: this.user.complemento,
-                cpf: this.user.cpf,
-                pis: this.user.pis,
-                senha: this.user.senha,
-                _id: this.user._id
-            }, {withCredentials: true});
+            async editCadastro() {
+                await axios.post('/edit', {
+                    nome: this.user.nome,
+                    email: this.user.email,
+                    pais: this.user.pais,
+                    estado: this.user.estado,
+                    municipio: this.user.municipio,
+                    cep: this.user.cep,
+                    rua: this.user.rua,
+                    numero: this.user.numero,
+                    complemento: this.user.complemento,
+                    cpf: this.user.cpf,
+                    pis: this.user.pis,
+                    senha: this.user.senha,
+                    _id: this.user._id
+                }, {withCredentials: true});
 
-            this.$router.push('/');
+                this.$router.push('/');
+            },
+            async removerCadastro() {
+                try {
+                    await axios.delete('/remove', {withCredentials: true});
+                    await axios.post("/logout", null, { withCredentials: true });
+
+                    await this.$store.dispatch('setAuth', false);
+                    this.$router.push('/');
+                } catch (err) {
+                    await this.$store.dispatch('setAuth', true);
+                }
+            }
         }
-    }
     }
 </script>
 
@@ -172,6 +184,7 @@ import axios from 'axios';
     margin: 30px auto auto auto;
     border-color: #261132;
     color: #261132;
+    width: 50%;
 }
 .btn-class:hover{
     background-color: #261132;

@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const verificaJwt = require('./verificaJwt');
+const { verificaPossuiJwt, verificaNaoPossuiJwt } = require('./verificaJwt');
 const User = require('../model/User.js');
 const { validacaoRegistro, validacaoLogin, validacaoEdit } = require('../validation.js');
 
-router.post('/register', async (req, res) => {
+router.post('/register', verificaPossuiJwt, async (req, res) => {
     //Validação dos dados antes da criação do usuário
     const validacao = validacaoRegistro(req.body);
     if (validacao.error) {
@@ -53,7 +53,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', verificaPossuiJwt, async (req, res) => {
 
     //Validação dos dados antes da tentativa de login
     const validacao = validacaoLogin(req.body);
@@ -89,7 +89,7 @@ router.post('/login', async (req, res) => {
     res.send("Logado com sucesso, cookie inicializado");
 });
 
-router.post('/edit', verificaJwt, async (req, res) => {
+router.post('/edit', verificaNaoPossuiJwt, async (req, res) => {
 
     //Validação dos dados antes da tentativa de edição
     const validacao = validacaoEdit(req.body);
@@ -110,17 +110,39 @@ router.post('/edit', verificaJwt, async (req, res) => {
     if (checkChavesExistentes && req.body._id != checkChavesExistentes._id) {
         return res.status(400).send("Pis já utilizado");
     }
-
+    
     //Realiza update no banco de dados usando o _id relativo ao token atual
     const attRegistro = await User.findOneAndUpdate({_id: req.user._id}, req.body);
     if(!attRegistro) {
-        return res.status(400).send("Atualização do registro falhou")
+        return res.status(400).send("Atualização do registro falhou");
     }
 
-    res.send("Registro atualizado com sucesso")
+    res.send("Registro atualizado com sucesso");
 });
 
-router.delete('/remove', verificaJwt, async (req, res) => {
+router.post('/edit-senha', verificaNaoPossuiJwt, async (req, res) => {
+
+    //Validação dos dados antes da tentativa de edição
+    const validacao = validacaoEdit(req.body);
+    if (validacao.error) {
+        return res.status(400).send(validacao.error.details[0].message);
+    }
+
+    //Insere hash na senha
+    const salt = await bcrypt.genSalt(10);
+    const senhaHashed = await bcrypt.hash(req.body.senha, salt);
+    req.body.senha = senhaHashed;
+    
+    //Realiza update no banco de dados usando o _id relativo ao token atual
+    const attSenha = await User.findOneAndUpdate({_id: req.user._id}, req.body);
+    if(!attSenha) {
+        return res.status(400).send("Atualização da senha falhou");
+    }
+
+    res.send("Senha atualizada com sucesso");
+});
+
+router.delete('/remove', verificaNaoPossuiJwt, async (req, res) => {
     //Realiza delete no banco de dados usando o _id relativo ao token atual
     const removeRegistro = await User.findOneAndRemove({_id: req.user._id});
     if(!removeRegistro) {
@@ -130,7 +152,7 @@ router.delete('/remove', verificaJwt, async (req, res) => {
     res.send("Registro removido com sucesso")
 });
 
-router.get('/user', async (req, res) => {
+router.get('/user', verificaNaoPossuiJwt, async (req, res) => {
     try {
         const cookieJwt = req.cookies['Jwt'];
 
@@ -147,7 +169,7 @@ router.get('/user', async (req, res) => {
     }
 });
 
-router.post('/logout', (req, res) => {
+router.post('/logout', verificaNaoPossuiJwt, (req, res) => {
     //Sobrescreve cookie existente para um que irá morrer
     res.cookie('Jwt', '', {maxAge: 0});
 

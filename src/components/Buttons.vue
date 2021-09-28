@@ -33,6 +33,7 @@
     margin: 15px auto auto auto;
     border-color: #261132;
     color: #261132;
+    width: 80%;
 }
 .btn-class:hover{
     background-color: #261132;

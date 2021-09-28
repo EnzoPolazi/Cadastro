@@ -62,7 +62,7 @@
                     </div>
                     <button class="btn btn-class">Cadastrar-se</button>
                 </form>
-                <p id="redLogin">Já possui uma conta? <router-link to="/login">Fazer Login</router-link></p>
+                <p v-if="!this.$store.getters.authenticatedGet" id="redLogin">Já possui uma conta? <router-link to="/login">Fazer Login</router-link></p>
             </div>
         </div>
     </div>
@@ -111,7 +111,16 @@ export default {
                 senha: this.senha
             });
 
-            console.log('usuário registrado' + this.email);
+            if(this.$store.getters.authenticatedGet){
+                try {
+                    await axios.post("/logout", null, { withCredentials: true });
+
+                    await this.$store.dispatch('setAuth', false)
+                } catch (err) {
+                    await this.$store.dispatch('setAuth', true)
+                }
+            }
+
             await axios.post('/login', {
                 login: this.email,
                 senha: this.senha

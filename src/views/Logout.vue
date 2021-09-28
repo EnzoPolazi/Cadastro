@@ -36,6 +36,7 @@ import axios from 'axios'
 .message-display{
     font-weight: bold;
     text-align: center;
+    width: 100%;
 }
 .content{
     color: #000000;
