@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const verificaJwt = require('./verificaJwt');
 const User = require('../model/User.js');
-const { validacaoRegistro, validacaoLogin } = require('../validation.js');
+const { validacaoRegistro, validacaoLogin, validacaoEdit } = require('../validation.js');
 
 router.post('/register', async (req, res) => {
     //Validação dos dados antes da criação do usuário
@@ -92,9 +92,23 @@ router.post('/login', async (req, res) => {
 router.post('/edit', verificaJwt, async (req, res) => {
 
     //Validação dos dados antes da tentativa de edição
-    const validacao = validacaoRegistro(req.body);
+    const validacao = validacaoEdit(req.body);
     if (validacao.error) {
         return res.status(400).send(validacao.error.details[0].message);
+    }
+
+    //Verifica se alguma chave de login já existe
+    var checkChavesExistentes = await User.findOne({ email: req.body.email });
+    if (checkChavesExistentes && req.body._id != checkChavesExistentes._id) {
+        return res.status(400).send("Email já utilizado");
+    }
+    checkChavesExistentes = await User.findOne({ cpf: req.body.cpf });
+    if (checkChavesExistentes && req.body._id != checkChavesExistentes._id) {
+        return res.status(400).send("Cpf já utilizado");
+    }
+    checkChavesExistentes = await User.findOne({ pis: req.body.pis });
+    if (checkChavesExistentes && req.body._id != checkChavesExistentes._id) {
+        return res.status(400).send("Pis já utilizado");
     }
 
     //Realiza update no banco de dados usando o _id relativo ao token atual

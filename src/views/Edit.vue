@@ -115,7 +115,8 @@ import axios from 'axios';
                 complemento: this.user.complemento,
                 cpf: this.user.cpf,
                 pis: this.user.pis,
-                senha: this.user.senha
+                senha: this.user.senha,
+                _id: this.user._id
             }, {withCredentials: true});
 
             this.$router.push('/');
