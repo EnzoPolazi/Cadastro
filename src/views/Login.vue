@@ -4,7 +4,7 @@
         <div class="row content">
             <div class="col">
                 <h3 class="signin-text mb-3">Login</h3>
-                <form @submit.prevent="autenticacaoLogin">
+                <form @submit.prevent="autenticacaoLogin()">
                     <div class="form-group">
                         <label for="login">Usuário</label>
                         <input type="login" name="login" v-model="login" placeholder="Email, CPF ou PIS" class="form-control">
@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import Footer from '@/components/Footer.vue'
-import axios from 'axios'
+import Footer from '@/components/Footer.vue';
+import axios from 'axios';
 
     export default {
         name: "Login",

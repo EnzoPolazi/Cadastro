@@ -18,6 +18,7 @@
 
 <script>
 import axios from 'axios';
+
     export default {
         name: "AlterarSenha",
         data() {
@@ -39,7 +40,7 @@ import axios from 'axios';
                 senhaNova: ''
             }
         },
-        async created(){
+        async created() {
             try {
                 const response = await axios.get("user", { withCredentials: true });
                 this.user = response.data;

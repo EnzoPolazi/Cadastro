@@ -70,15 +70,15 @@
 </template>
 
 <script>
-import Footer from '@/components/Footer.vue'
-import axios from 'axios'
+import Footer from '@/components/Footer.vue';
+import axios from 'axios';
 
 export default {
     name: "Cadastro",
     components: {
         Footer
     },
-    data(){
+    data() {
         return {
             nome: '',
             email: '',
@@ -115,9 +115,9 @@ export default {
                 try {
                     await axios.post("/logout", null, { withCredentials: true });
 
-                    await this.$store.dispatch('setAuth', false)
+                    await this.$store.dispatch('setAuth', false);
                 } catch (err) {
-                    await this.$store.dispatch('setAuth', true)
+                    await this.$store.dispatch('setAuth', true);
                 }
             }
 

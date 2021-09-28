@@ -69,12 +69,13 @@
 <script>
 import Footer from "@/components/Footer.vue";
 import axios from 'axios';
+
     export default {
         name: "Edit",
         components: {
             Footer
         },
-        data(){
+        data() {
             return {
                 user: {
                     nome: '',

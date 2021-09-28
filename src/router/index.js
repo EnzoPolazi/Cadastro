@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '@/views/Home'
-import Cadastro from '@/views/Cadastro'
-import Login from '@/views/Login'
-import Edit from '@/views/Edit'
-import Logout from '@/views/Logout'
-import AlterarSenha from '@/views/AlterarSenha'
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from '@/views/Home';
+import Cadastro from '@/views/Cadastro';
+import Login from '@/views/Login';
+import Edit from '@/views/Edit';
+import Logout from '@/views/Logout';
+import AlterarSenha from '@/views/AlterarSenha';
 
 const routes = [
     {

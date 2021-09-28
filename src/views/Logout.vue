@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+
     export default {
         name: "Logout",
         data() {
@@ -23,10 +24,10 @@ import axios from 'axios'
                 const response = await axios.post("/logout", null, { withCredentials: true });
                 this.mensagem = response.data;
 
-                await this.$store.dispatch('setAuth', false)
-                // this.$router.push('/');
+                await this.$store.dispatch('setAuth', false);
+                // this.$router.push('/'); // comando para caso não fossemos utilizar botão para voltar
             } catch (err) {
-                await this.$store.dispatch('setAuth', true)
+                await this.$store.dispatch('setAuth', true);
             }
         },
     }
