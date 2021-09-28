@@ -3,6 +3,7 @@ import Home from '@/views/Home'
 import Sobre from '@/views/Sobre'
 import Cadastro from '@/views/Cadastro'
 import Login from '@/views/Login'
+import Logout from '@/views/Logout'
 import Edit from '@/views/Edit'
 
 const routes = [
@@ -30,6 +31,11 @@ const routes = [
         name: 'edit',
         path: '/edit',
         component: Edit
+    },
+    {
+        name: 'logout',
+        path: '/logout',
+        component: Logout
     }
 ]
 

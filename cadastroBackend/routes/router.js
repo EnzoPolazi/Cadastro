@@ -151,7 +151,7 @@ router.post('/logout', (req, res) => {
     //Sobrescreve cookie existente para um que irá morrer
     res.cookie('Jwt', '', {maxAge: 0});
 
-    res.send("Deslogado com sucesso");
+    res.send("Deslogado com sucesso!");
 })
 
 module.exports = router;
