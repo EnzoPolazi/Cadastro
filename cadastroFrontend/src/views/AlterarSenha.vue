@@ -7,7 +7,7 @@
                 <form @submit.prevent="alterarSenha()">
                     <div class="form-group">
                         <label for="senha">Nova senha</label>
-                        <input type="password" v-model="senhaNova" name="senha2" class="form-control">
+                        <input type="password" v-model="senhaNova" name="senha" class="form-control">
                     </div>
                     <button class="btn btn-class">Alterar</button>
                 </form>
